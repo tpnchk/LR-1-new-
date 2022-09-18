@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class Fibonachi {
+    public static int getFibonachiDigit (int number) //пошук останньої цифри числа
+    {
+        return Math.abs(number) % 10;
+    }
+    public static int[] arrayFibonachi(int lengthFibonachi) // створення масиву чисел фібоначі
+    {
+        int[] arrOfFib = new int[lengthFibonachi];
+        arrOfFib[0] = 0;
+        arrOfFib[1] = 1;
+        for (int i = 2; i < arrOfFib.length; ++i) {
+            arrOfFib[i] = arrOfFib[i - 1] + arrOfFib[i - 2];
+        }
+        return arrOfFib;
+    }
+    public static void printFib(int[]arrOfFib)// виведення масиву фібоначі
+    {
+        for (int n = 0; n < arrOfFib.length; n++) {
+            System.out.print(arrOfFib[n] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void fibDigit(int[]arrOfFib,int num) //виведення чисел фібоначі з останньою заданою цифрою
+    {
+
+        for (int i = 0; i < arrOfFib.length; ++i) {
+            if (getFibonachiDigit(arrOfFib[i]) == num) {
+                System.out.println(arrOfFib[i]);
+
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Input a number of length FIBONACHI: ");
+        int lengthFibonachi = in.nextInt();
+        System.out.print("Input an entered number: ");
+        int num = in.nextInt();
+        System.out.printf("Numbers among the first %d Fibonacci numbers   \n",lengthFibonachi);
+        in.close();
+        int[] arr=arrayFibonachi(lengthFibonachi);
+        printFib(arr);
+        System.out.printf("with an entered number %d\n",num);
+        fibDigit(arr,num);
+    }
+}
